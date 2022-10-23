@@ -1,0 +1,30 @@
+@api = http://localhost:3000/jobs
+
+GET {{api}}
+
+###
+GET {{api}}/4
+
+###
+GET {{  api }}/count
+
+###
+POST {{api}}
+Content-Type: application/json
+
+{
+    "title" : "Cuidar a Bigotes",
+    "description": "Un gato muy discreto",
+    "price": 20
+}
+
+###
+DELETE {{api}}/20
+
+###
+PUT {{api}}/2
+Content-Type: application/json
+
+{
+    "description": "Un perro muy sucio"
+}
