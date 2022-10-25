@@ -13,7 +13,7 @@ export const getJob = async (req, res) => {
     res.json(result[0]);
 }
 
-export const getJobCount = async (req, res) => {
+export const getJobsCount = async (req, res) => {
     const conn = await connection();
     const [result] = await conn.query('SELECT COUNT(*) FROM jobs');
     res.json(result[0]["COUNT(*)"]);
@@ -21,10 +21,12 @@ export const getJobCount = async (req, res) => {
 
 export const saveJob = async (req, res) => {
     const conn = await connection();
-    const [result] = await conn.query("INSERT INTO jobs(title, description, price) VALUES (?,?,?)", [
+    const [result] = await conn.query("INSERT INTO jobs(title, description, price, jobType, requesterId) VALUES (?,?,?,?,?)", [
         req.body.title,
         req.body.description,
-        req.body.price
+        req.body.price,
+        req.body.jobType,
+        req.body.requesterId
     ]);
     res.json({
         id: result.insertId,
