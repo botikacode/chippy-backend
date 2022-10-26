@@ -1,5 +1,22 @@
 import {connection} from '../database'
 
+export const getPetsJob = async (req, res) => {
+    const conn = await connection();
+    const [result] = await conn.query('SELECT * FROM petJobs WHERE jobId =?', [req.params.id]);
+    res.json(result);
+}
+
+export const addPetJob = async (req, res) => {
+    const conn = await connection();
+    const [result] = await conn.query("INSERT INTO petJobs(jobId, petId) VALUES (?,?)", [
+        req.body.jobId,
+        req.body.petId
+    ]);
+    res.json({
+        id: result.insertId,
+        ...req.body,
+    });
+}
 
 export const getJobs = async (req, res) => {
     const conn = await connection();
