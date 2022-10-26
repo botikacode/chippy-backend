@@ -3,25 +3,25 @@ import {connection} from '../database'
 
 export const getCustomers = async (req, res) => {
     const conn = await connection();
-    const [result] = await conn.query('SELECT * FROM jobs');
+    const [result] = await conn.query('SELECT * FROM customers');
     res.json(result);
 }
 
 export const getCustomer = async (req, res) => {
     const conn = await connection();
-    const [result] = await conn.query('SELECT * FROM jobs WHERE id =?', [req.params.id]);
+    const [result] = await conn.query('SELECT * FROM customers WHERE id =?', [req.params.id]);
     res.json(result[0]);
 }
 
 export const getCustomersCount = async (req, res) => {
     const conn = await connection();
-    const [result] = await conn.query('SELECT COUNT(*) FROM jobs');
+    const [result] = await conn.query('SELECT COUNT(*) FROM customers');
     res.json(result[0]["COUNT(*)"]);
 }
 
 export const saveCustomer = async (req, res) => {
     const conn = await connection();
-    const [result] = await conn.query("INSERT INTO jobs(lastName, firstName, address, city, image, description, phone, email, web, petId, isShelter) VALUES (?,?,?,?,?,?,?,?,?,?,?)", [
+    const [result] = await conn.query("INSERT INTO customers(lastName, firstName, address, city, image, description, phone, email, web, petId, isShelter) VALUES (?,?,?,?,?,?,?,?,?,?,?)", [
         req.body.lastName,
         req.body.firstName,
         req.body.address,
