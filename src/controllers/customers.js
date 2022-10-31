@@ -21,18 +21,18 @@ export const getCustomersCount = async (req, res) => {
 
 export const saveCustomer = async (req, res) => {
     const conn = await connection();
-    const [result] = await conn.query("INSERT INTO customers(lastName, firstName, address, city, image, description, phone, email, web, petId, isShelter) VALUES (?,?,?,?,?,?,?,?,?,?,?)", [
-        req.body.lastName,
-        req.body.firstName,
-        req.body.address,
-        req.body.city,
-        req.body.image,
-        req.body.description,
-        req.body.phone,
-        req.body.email,
-        req.body.web,
-        req.body.petId,
-        req.body.isShelter
+    const [result] = await conn.query("INSERT INTO customers(lastName, firstName, address, city, image, description, phone, email, password, web,isShelter) VALUES (?,?,?,?,?,?,?,?,?,?,?)", [
+        req.body.lastName || "",
+        req.body.firstName || "",
+        req.body.address || "",
+        req.body.city || "",
+        req.body.image || "",
+        req.body.description || "",
+        req.body.phone || "",
+        req.body.email || "",
+        req.body.password || "",
+        req.body.web || "",
+        req.body.isShelter || false
     ]);
     res.json({
         id: result.insertId,

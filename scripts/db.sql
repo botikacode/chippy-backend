@@ -22,6 +22,7 @@ CREATE TABLE IF NOT EXISTS customers (
     description VARCHAR(255),
     phone VARCHAR(255),
     email VARCHAR(255),
+    password VARCHAR(255),
     web VARCHAR(255),
     isShelter BOOL
 );
@@ -56,9 +57,9 @@ CREATE TABLE IF NOT EXISTS petJobs (
     CONSTRAINT FkJobPetJob FOREIGN KEY (jobId) REFERENCES jobs(id)
 );
 
-INSERT INTO customers (lastName, firstName, address, city, image, description, phone, email, web, isShelter) VALUES
-  ('Doe', 'John', 'Calle calle', 'Valencia','URLImage','Hi Im John Doe', '123456789','JohnDoe@gmail.com','JohnDoe.com', False ),
-  ('Aer', 'Mathieu', 'Calle Mat', 'Barcelona','URLImage','Hi Im Mathieu', '987654321','MathieuAer@gmail.com','Mathieu.com', False );
+INSERT INTO customers (lastName, firstName, address, city, image, description, phone, email, password, web, isShelter) VALUES
+  ('Doe', 'John', 'Calle calle', 'Valencia','URLImage','Hi Im John Doe', '123456789','JohnDoe@gmail.com','123', 'JohnDoe.com', False ),
+  ('Aer', 'Mathieu', 'Calle Mat', 'Barcelona','URLImage','Hi Im Mathieu', '987654321','MathieuAer@gmail.com','123', 'Mathieu.com', False );
 INSERT INTO jobs (title, jobType, price, description, requesterId, interestedId) VALUES
   ('Pasear a Ramiro','Walk', '30', 'Ramiro, el perro cosmico',1, 2);
 INSERT INTO jobs (title, jobType, price, description, requesterId) VALUES
