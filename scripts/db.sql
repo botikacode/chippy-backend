@@ -56,7 +56,15 @@ CREATE TABLE IF NOT EXISTS petJobs (
     CONSTRAINT FkPetPetjob FOREIGN KEY (petId) REFERENCES pets(id),
     CONSTRAINT FkJobPetJob FOREIGN KEY (jobId) REFERENCES jobs(id)
 );
-
+CREATE TABLE IF NOT EXISTS comments (
+    id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (id),
+    content VARCHAR(1000),
+    profileOwnerId INT,
+    commentatorId INT,
+    CONSTRAINT FkProfileOwner FOREIGN KEY (profileOwnerId) REFERENCES customers(id),
+    CONSTRAINT FkCommentWriter FOREIGN KEY (commentatorId) REFERENCES customers(id)
+);
 INSERT INTO customers (lastName, firstName, address, city, image, description, phone, email, password, web, isShelter) VALUES
   ('Doe', 'John', 'Calle calle', 'Valencia','URLImage','Hi Im John Doe', '123456789','JohnDoe@gmail.com','123', 'JohnDoe.com', False ),
   ('Aer', 'Mathieu', 'Calle Mat', 'Barcelona','URLImage','Hi Im Mathieu', '987654321','MathieuAer@gmail.com','123', 'Mathieu.com', False );
@@ -72,3 +80,5 @@ INSERT INTO pets (petName, petType, description, image, ownerId) VALUES
   ('Ramiro', 'Dog', 'A doggo', 'URLPetImage', 1);
 INSERT INTO petJobs (petId, jobId) VALUES
   (1, 1);
+INSERT INTO comments (content, profileOwnerId, commentatorId) VALUES
+  ("Esto es un comentario de prueba", 1, 2);
