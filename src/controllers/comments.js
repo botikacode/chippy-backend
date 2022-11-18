@@ -1,6 +1,12 @@
 import {connection} from '../database'
 
 
+export const getUserComments = async (req, res) => {
+    const conn = await connection();
+    const [result] = await conn.query('SELECT * FROM comments WHERE profileOwnerId =?', [req.params.profileOwnerId]);
+    res.json(result);
+}
+
 export const getComments = async (req, res) => {
     const conn = await connection();
     const [result] = await conn.query('SELECT * FROM comments');

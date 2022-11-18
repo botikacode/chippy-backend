@@ -1,9 +1,10 @@
 import { Router } from 'express';
-import { deleteComment, getComments, getCommentsCount, getComment, saveComment, updateComment } from '../controllers/comments';
+import { getUserComments, deleteComment, getComments, getCommentsCount, getComment, saveComment, updateComment } from '../controllers/comments';
 
 const router = Router()
 
 router.get('/comments', getComments)
+router.get('/comments/profile/:profileOwnerId', getUserComments)
 router.get('/comments/count', getCommentsCount)
 router.get('/comments/:id', getComment)
 router.post('/comments', saveComment)
