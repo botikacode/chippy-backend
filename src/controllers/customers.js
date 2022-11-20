@@ -13,6 +13,12 @@ export const getCustomer = async (req, res) => {
     res.json(result[0]);
 }
 
+export const getCustomerWithPass = async (req, res) => {
+    const conn = await connection();
+    const [result] = await conn.query('SELECT * FROM customers WHERE email =? AND password =?', [req.params.email, req.params.password]);
+    res.json(result[0]);
+}
+
 export const getCustomersCount = async (req, res) => {
     const conn = await connection();
     const [result] = await conn.query('SELECT COUNT(*) FROM customers');

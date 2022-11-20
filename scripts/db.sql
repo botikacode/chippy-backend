@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS petJobs;
 DROP TABLE IF EXISTS pets;
 DROP TABLE IF EXISTS jobs;
 DROP TABLE IF EXISTS customers;
+DROP TABLE IF EXISTS comments;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -56,10 +57,18 @@ CREATE TABLE IF NOT EXISTS petJobs (
     CONSTRAINT FkPetPetjob FOREIGN KEY (petId) REFERENCES pets(id),
     CONSTRAINT FkJobPetJob FOREIGN KEY (jobId) REFERENCES jobs(id)
 );
-
+CREATE TABLE IF NOT EXISTS comments (
+    id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (id),
+    content VARCHAR(1000),
+    profileOwnerId INT,
+    commentatorId INT,
+    CONSTRAINT FkProfileOwner FOREIGN KEY (profileOwnerId) REFERENCES customers(id),
+    CONSTRAINT FkCommentWriter FOREIGN KEY (commentatorId) REFERENCES customers(id)
+);
 INSERT INTO customers (lastName, firstName, address, city, image, description, phone, email, password, web, isShelter) VALUES
   ('Doe', 'John', 'Calle calle', 'Valencia','URLImage','Hi Im John Doe', '123456789','JohnDoe@gmail.com','123', 'JohnDoe.com', False ),
-  ('Aer', 'Mathieu', 'Calle Mat', 'Barcelona','URLImage','Hi Im Mathieu', '987654321','MathieuAer@gmail.com','123', 'Mathieu.com', False );
+  ('Aer', 'Mathieu', 'Calle Mat', 'Barcelona','imagenSenyor.jpg','Hi Im Mathieu', '987654321','MathieuAer@gmail.com','123', 'Mathieu.com', False );
 INSERT INTO jobs (title, jobType, price, description, requesterId, interestedId) VALUES
   ('Pasear a Ramiro','Walk', '30', 'Ramiro, el perro cosmico',1, 2);
 INSERT INTO jobs (title, jobType, price, description, requesterId) VALUES
@@ -72,3 +81,7 @@ INSERT INTO pets (petName, petType, description, image, ownerId) VALUES
   ('Ramiro', 'Dog', 'A doggo', 'URLPetImage', 1);
 INSERT INTO petJobs (petId, jobId) VALUES
   (1, 1);
+INSERT INTO comments (content, profileOwnerId, commentatorId) VALUES
+  ("Comentario de prueba 1", 1, 2),
+  ("Comentario de prueba 2", 1, 2),
+  ("Comentario de prueba 3", 1, 2);
