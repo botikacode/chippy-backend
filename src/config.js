@@ -1,7 +1,7 @@
 export const config = {
-    host: 'localhost',
+    host: 'chippydb.cpf1ai3u86li.us-east-1.rds.amazonaws.com',
     port: '3306',
-    user: 'root',
-    password: 'root',
+    user: 'admin',
+    password: 'adminadmin',
     database: 'chippydb'
 }
