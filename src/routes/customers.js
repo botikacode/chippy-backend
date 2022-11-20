@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { deleteCustomer, getCustomers, getCustomersCount, getCustomer, saveCustomer, updateCustomer, getCustomerPass } from '../controllers/customers';
+import { deleteCustomer, getCustomers, getCustomersCount, getCustomer, saveCustomer, updateCustomer, getCustomerWithPass } from '../controllers/customers';
 
 const router = Router()
 
