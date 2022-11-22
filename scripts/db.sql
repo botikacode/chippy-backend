@@ -72,8 +72,8 @@ CREATE TABLE IF NOT EXISTS messages (
     id INT NOT NULL AUTO_INCREMENT,
     PRIMARY KEY (id),
     content VARCHAR(1000),
-    currentUserId INT,
-    otherUserId INT
+    userId INT,
+    mDate VARCHAR(20)
 );
 
 INSERT INTO customers (lastName, firstName, address, city, image, description, phone, email, password, web, isShelter) VALUES
@@ -95,7 +95,7 @@ INSERT INTO comments (content, profileOwnerId, commentatorId) VALUES
   ("Comentario de prueba 1", 1, 2),
   ("Comentario de prueba 2", 1, 2),
   ("Comentario de prueba 3", 1, 2);
-  INSERT INTO messages (content, currentUserId, otherUserId) VALUES
-  ("Mensaje de prueba", 1, 2),
-  ("Mensaje de prueba 2", 1, 2),
-  ("Mensaje de prueba 3", 1, 2);
+  INSERT INTO messages (content, userId, mDate) VALUES
+  ("Buenos dias", 2, "16/01/2022"),
+  ("Estoy interesado en tu anuncio", 2, "16/01/2022"),
+  ("Hola", 1, "16/01/2022");
