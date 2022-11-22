@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS pets;
 DROP TABLE IF EXISTS jobs;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS messages;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
@@ -66,6 +67,15 @@ CREATE TABLE IF NOT EXISTS comments (
     CONSTRAINT FkProfileOwner FOREIGN KEY (profileOwnerId) REFERENCES customers(id),
     CONSTRAINT FkCommentWriter FOREIGN KEY (commentatorId) REFERENCES customers(id)
 );
+
+CREATE TABLE IF NOT EXISTS messages (
+    id INT NOT NULL AUTO_INCREMENT,
+    PRIMARY KEY (id),
+    content VARCHAR(1000),
+    userId INT,
+    mDate VARCHAR(20)
+);
+
 INSERT INTO customers (lastName, firstName, address, city, image, description, phone, email, password, web, isShelter) VALUES
   ('Doe', 'John', 'Calle calle', 'Valencia','URLImage','Hi Im John Doe', '123456789','JohnDoe@gmail.com','123', 'JohnDoe.com', False ),
   ('Aer', 'Mathieu', 'Calle Mat', 'Barcelona','imagenSenyor.jpg','Hi Im Mathieu', '987654321','MathieuAer@gmail.com','123', 'Mathieu.com', False );
@@ -85,3 +95,7 @@ INSERT INTO comments (content, profileOwnerId, commentatorId) VALUES
   ("Comentario de prueba 1", 1, 2),
   ("Comentario de prueba 2", 1, 2),
   ("Comentario de prueba 3", 1, 2);
+  INSERT INTO messages (content, userId, mDate) VALUES
+  ("Buenos dias", 2, "16/01/2022"),
+  ("Estoy interesado en tu anuncio", 2, "16/01/2022"),
+  ("Hola", 1, "16/01/2022");
