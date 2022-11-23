@@ -73,7 +73,9 @@ CREATE TABLE IF NOT EXISTS messages (
     PRIMARY KEY (id),
     content VARCHAR(1000),
     userId INT,
-    mDate VARCHAR(20)
+    mDate VARCHAR(20),
+    chatId INT,
+	CONSTRAINT FkUserChat FOREIGN KEY (userId) REFERENCES customers(id)
 );
 
 INSERT INTO customers (lastName, firstName, address, city, image, description, phone, email, password, web, isShelter) VALUES
@@ -95,7 +97,8 @@ INSERT INTO comments (content, profileOwnerId, commentatorId) VALUES
   ("Comentario de prueba 1", 1, 2),
   ("Comentario de prueba 2", 1, 2),
   ("Comentario de prueba 3", 1, 2);
-  INSERT INTO messages (content, userId, mDate) VALUES
-  ("Buenos dias", 2, "16/01/2022"),
-  ("Estoy interesado en tu anuncio", 2, "16/01/2022"),
-  ("Hola", 1, "16/01/2022");
+  INSERT INTO messages (content, userId, mDate, chatId) VALUES
+  ("Buenos dias", 2, "16/01/2022", 7),
+  ("Estoy interesado en tu anuncio", 2, "16/01/2022", 7),
+  ("Hola", 1, "16/01/2022", 7),
+  ("Probando nueva sala de chat", 1, "16/01/2022", 8);
