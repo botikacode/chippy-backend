@@ -13,6 +13,12 @@ export const getPet = async (req, res) => {
     res.json(result[0]);
 }
 
+export const getUserPets = async (req, res) => {
+    const conn = await connection();
+    const [result] = await conn.query('SELECT * FROM pets WHERE ownerId =?', [req.params.ownerId]);
+    res.json(result);
+}
+
 export const getPetsCount = async (req, res) => {
     const conn = await connection();
     const [result] = await conn.query('SELECT COUNT(*) FROM pets');
