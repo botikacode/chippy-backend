@@ -27,7 +27,13 @@ export const getJobs = async (req, res) => {
 export const getJobsUser = async (req, res) => {
     const conn = await connection();
     const [result] = await conn.query('SELECT * FROM jobs WHERE requesterId =?', [req.params.id])
-    res.json(result); 
+    res.json(result);
+}
+
+export const getJobsNotUser = async (req, res) => {
+    const conn = await connection();
+    const [result] = await conn.query('SELECT * FROM jobs WHERE requesterId <>? AND interestedId IS NULL', [req.params.id])
+    res.json(result);
 }
 
 export const getJob = async (req, res) => {
@@ -69,6 +75,5 @@ export const updateJob = async (req, res) => {
         req.body,
         req.params.id
     ]);
-    console.log(result)
     res.sendStatus(204);
 }
