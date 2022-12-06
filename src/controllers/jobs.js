@@ -50,12 +50,15 @@ export const getJobsCount = async (req, res) => {
 
 export const saveJob = async (req, res) => {
     const conn = await connection();
-    const [result] = await conn.query("INSERT INTO jobs(title, description, price, jobType, requesterId) VALUES (?,?,?,?,?)", [
+    const [result] = await conn.query("INSERT INTO jobs(title, description, price, jobType, requesterId, startDate, endDate, snowFlakes) VALUES (?,?,?,?,?,?,?,?)", [
         req.body.title,
         req.body.description,
         req.body.price,
         req.body.jobType,
-        req.body.requesterId
+        req.body.requesterId,
+        req.body.startDate,
+        req.body.endDate,
+        req.body.snowFlakes
     ]);
     res.json({
         id: result.insertId,

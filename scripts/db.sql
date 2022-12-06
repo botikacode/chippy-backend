@@ -35,8 +35,11 @@ CREATE TABLE IF NOT EXISTS jobs (
     jobType VARCHAR(255),
     price INT NOT NULL,
     description VARCHAR(255),
+    snowFlakes INT,
     requesterId INT,
     interestedId INT,
+    startDate VARCHAR(500),
+    endDate VARCHAR(500),
     CONSTRAINT FkRequester FOREIGN KEY (requesterId) REFERENCES customers(id),
     CONSTRAINT FkInterested FOREIGN KEY (interestedId) REFERENCES customers(id)
 );
