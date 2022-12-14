@@ -51,6 +51,8 @@ CREATE TABLE IF NOT EXISTS pets (
     description VARCHAR(255),
     image VARCHAR(255),
     ownerId INT,
+    age INT,
+    gender VARCHAR(255),
     CONSTRAINT FkOwner FOREIGN KEY (ownerId) REFERENCES customers(id)
 );
 CREATE TABLE IF NOT EXISTS petJobs (
@@ -86,18 +88,43 @@ INSERT INTO customers (lastName, firstName, address, city, image, description, p
   ('Aer', 'Mathieu', 'Calle Mat', 'Barcelona','imagenSenyor.jpg','Hi Im Mathieu', '987654321','MathieuAer@gmail.com','123', 'Mathieu.com', False );
 INSERT INTO jobs (title, jobType, price, description, requesterId, interestedId) VALUES
   ('Pasear a Ramiro','Walk', '30', 'Ramiro, el perro cosmico',1, 2);
-INSERT INTO jobs (title, jobType, price, description, requesterId) VALUES
-  ('Pasear a Sarna','Walk', '50', 'Siempre te acompaña',1),
-  ('Pasear a Cochambroso','Walk', '20', 'Algo viejo, pero con ganas de darlo todo',1),
-  ('Sacar a Pelusa','Walk', '10', 'Pequeña pero peluda',1),
-  ('Sacar a Daro','Walk', '35', 'Grande pero raro',1),
-  ('Sacar a Cauciono','Walk', '25', 'Alimaña sin pelo', 1);
-INSERT INTO pets (petName, petType, description, image, ownerId) VALUES
-  ('Ramiro', 'Dog', 'A doggo', 'URLPetImage', 1);
+INSERT INTO jobs (title, jobType, price, description, requesterId, startDate, endDate) VALUES
+  ('Pasear a Ramiro','Walk', '50', 'Siempre te acompaña',1,'2022-12-01 12:34','2022-12-03 12:34'),
+  ('Pasear a Raula','Walk', '20', 'Algo viejo, pero con ganas de darlo todo',1,'2022-12-01 12:34','2022-12-03 12:34'),
+  ('Sacar a Doggis','Walk', '10', 'Pequeña pero peluda',2,'2022-12-01 12:34','2022-12-03 12:34'),
+  ('Sacar a Blacky','Walk', '35', 'Grande pero raro',1,'2022-12-01 12:34','2022-12-03 12:34'),
+  ('Sacar a Laura','Cuidar', '25', 'Alimaña sin pelo', 1,'2022-12-01 12:34','2022-12-03 12:34'),
+  ('Sacar a Jo','Cuidar', '25', 'Alimaña sin pelo', 2,'2022-12-01 12:34','2022-12-03 12:34'),
+  ('Sacar a Pedro','Cuidar', '10', 'Alimaña sin pelo', 2,'2022-12-01 12:34','2022-12-03 12:34'),
+  ('Sacar a Pucca','Pasear', '25', 'Alimaña sin pelo', 1,'2022-12-01 12:34','2022-12-03 12:34'),
+  ('Sacar a Garu','Pasear', '12', 'Alimaña sin pelo', 2,'2022-12-01 12:34','2022-12-03 12:34');
+  
+INSERT INTO pets (petName, petType, description, image, ownerId,age,gender) VALUES
+  ('Ramiro', 'Dog', 'A doggo', 'URLPetImage', 1, 10, 'Macho'),
+  ('Raula', 'Dog', ' Salvaje', 'URLPetImage', 2, 10, 'Hembra'),
+  ('Doggis', 'Cat', ' Dormilon', 'URLPetImage', 2, 10, 'Macho'),
+  ('Blacky', 'Cat', ' Inquieto', 'URLPetImage', 1, 10, 'Macho'),
+  ('Laura', 'Dog', 'Le encanta el agua', 'URLPetImage', 1, 10, 'Hembra'),
+  ('Jo', 'Dog', 'Le encanta el agua', 'URLPetImage', 2, 10, 'Hembra'),
+  ('Pedro', 'Cat', ' Urgente', 'URLPetImage', 1, 10, 'Macho'),
+  ('Pucca', 'Dog', 'Conversable $$$', 'URLPetImage', 1, 10, 'Hembra'),
+  ('Garu', 'Cat', 'Llevar Veterinario', 'URLPetImage', 2, 10, 'Macho');
+  
 INSERT INTO petJobs (petId, jobId) VALUES
-  (1, 1);
+  (1, 1),
+  (2, 2),
+  (3, 3),
+  (4, 4),
+  (5, 5),
+  (6, 6),
+  (7, 7),
+  (8, 8),
+  (9, 9);
+  
 INSERT INTO comments (content, profileOwnerId, commentatorId) VALUES
   ("Comentario de prueba 1", 1, 2),
+   ("Comentario de prueba 4", 1, 1),
+    ("Comentario de prueba 5", 1, 1),
   ("Comentario de prueba 2", 1, 2),
   ("Comentario de prueba 3", 1, 2);
   INSERT INTO messages (content, userId, mDate, chatId) VALUES
