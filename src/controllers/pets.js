@@ -27,12 +27,14 @@ export const getPetsCount = async (req, res) => {
 
 export const savePet = async (req, res) => {
     const conn = await connection();
-    const [result] = await conn.query("INSERT INTO pets(petName, petType, description, image, ownerId) VALUES (?,?,?,?,?)", [
+    const [result] = await conn.query("INSERT INTO pets(petName, petType, description, image, ownerId, age, gender) VALUES (?,?,?,?,?,?,?)", [
         req.body.petName,
         req.body.petType,
         req.body.description,
         req.body.image,
-        req.body.ownerId
+        req.body.ownerId,
+        req.body.age,
+        req.body.gender
     ]);
     res.json({
         id: result.insertId,
